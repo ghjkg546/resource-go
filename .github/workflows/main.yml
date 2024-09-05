@@ -14,9 +14,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [22.x]
         #See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -32,7 +32,7 @@ jobs:
       #     pnpm run build   
       #     ls ./dist
 
-      #- uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASS }}
           port: ${{ secrets.PORT }}
-          source: "config/*,main,config.yaml"
+          source: "main"
           target: /usr/local/goserver/docker
 
     

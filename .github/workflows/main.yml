@@ -40,8 +40,22 @@ jobs:
           username: root
           password: ${{ secrets.SERVER_PASS }}
           #port: ""
-          source: "./LICENSE"
+          source: "./main,config/*,config.yaml,db.db"
           target: /usr/local/goserver/docker
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: 198.46.248.64
+          username: root
+          password: ${{ secrets.PASSWORD }}
+          # port: ${{ secrets.PORT }}
+          script: |
+              ls -al
+              cd /usr/local/goserver/docker
+              docker-compose build
+              docker-compose up -d
+              
 
     
     

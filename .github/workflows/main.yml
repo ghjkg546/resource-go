@@ -33,7 +33,7 @@ jobs:
           username: root
           password: ${{ secrets.SERVER_PASS }}
           #port: ""
-          source: "./main,config/*,config.yaml"
+          source: "./main,config/*"
           target: /usr/local/goserver/docker
 
       - name: executing remote ssh commands using password

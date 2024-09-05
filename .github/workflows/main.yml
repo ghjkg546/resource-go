@@ -48,11 +48,12 @@ jobs:
         with:
           host: 198.46.248.64
           username: root
-          password: ${{ secrets.PASSWORD }}
+          password: ${{ secrets.SERVER_PASS }}
           # port: ${{ secrets.PORT }}
           script: |
               ls -al
               cd /usr/local/goserver/docker
+              chmod 777 main
               docker-compose build
               docker-compose up -d
               

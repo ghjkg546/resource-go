@@ -25,14 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: npm ci, build and test
-      #   run: |
-      #     npm install -g pnpm
-      #     pnpm install
-      #     pnpm run build   
-      #     ls ./dist
 
-      #- uses: actions/checkout@v4
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -40,7 +33,7 @@ jobs:
           username: root
           password: ${{ secrets.SERVER_PASS }}
           #port: ""
-          source: "./main,config/*,config.yaml,db.db"
+          source: "./main,config/*,config.yaml"
           target: /usr/local/goserver/docker
 
       - name: executing remote ssh commands using password
